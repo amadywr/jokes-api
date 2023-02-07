@@ -25,6 +25,7 @@ app.use(morgan('dev'))
 app.use(limiter)
 
 app.get('/', (_, res) => {
+  console.log('home!!!')
   res.status(200).send('<h1>WELCOME TO JOKES API</h1>')
 })
 
