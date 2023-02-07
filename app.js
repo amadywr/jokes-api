@@ -25,10 +25,11 @@ app.use(morgan('dev'))
 app.use(limiter)
 
 app.get('/', (_, res) => {
-  res.send('<h1>WELCOME TO JOKES API</h1>')
+  res.status(200).send('<h1>WELCOME TO JOKES API</h1>')
 })
 
 app.use('/api/jokes', require('./routes/api/jokes'))
 app.use('/api/users', require('./routes/api/users'))
 
-app.listen(3000, () => console.log(`server started on port 3000`))
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => console.log(`server started on port 3000`))
