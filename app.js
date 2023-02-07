@@ -3,7 +3,6 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const morgan = require('morgan')
-const path = require('path')
 const rateLimiter = require('express-rate-limit')
 
 const limiter = rateLimiter({
@@ -26,7 +25,7 @@ app.use(morgan('dev'))
 app.use(limiter)
 
 app.get('/', (_, res) => {
-  res.sendFile(path.join(__dirname + '/index.html'))
+  res.send('<h1>WELCOME TO JOKES API</h1>')
 })
 
 app.use('/api/jokes', require('./routes/api/jokes'))
