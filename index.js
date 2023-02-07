@@ -7,7 +7,7 @@ const rateLimiter = require('express-rate-limit')
 
 const limiter = rateLimiter({
   windowMs: 1000 * 60, // 1 minute
-  max: 5,
+  max: 20,
 })
 
 mongoose.set('strictQuery', false)
@@ -29,6 +29,7 @@ app.use(limiter)
 
 app.get('/', (_, res) => {
   console.log('home!!!')
+  console.log(process.env.MONGO_URI)
   res.status(200).send('<h1>WELCOME TO JOKES API</h1>')
 })
 
