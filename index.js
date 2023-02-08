@@ -4,6 +4,7 @@ const app = express()
 const mongoose = require('mongoose')
 const morgan = require('morgan')
 const rateLimiter = require('express-rate-limit')
+const path = require('path')
 
 const limiter = rateLimiter({
   windowMs: 1000 * 60, // 1 minute
@@ -25,9 +26,7 @@ app.use(morgan('dev'))
 app.use(limiter)
 
 app.get('/', (_, res) => {
-  console.log('home!!!')
-  console.log(process.env.MONGO_URI)
-  res.status(200).send('<h1>WELCOME TO JOKES API</h1>')
+  res.status(200).sendFile(path.join(__dirname, '/index.html'))
 })
 
 app.use('/api/jokes', require('./routes/api/jokes'))
